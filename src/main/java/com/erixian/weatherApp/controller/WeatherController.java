@@ -3,11 +3,10 @@ package com.erixian.weatherApp.controller;
 import com.erixian.weatherApp.model.WeatherResponse;
 import com.erixian.weatherApp.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 public class WeatherController {
 
     private final WeatherService weatherService;
@@ -17,11 +16,12 @@ public class WeatherController {
         this.weatherService = weatherService;
     }
 
-    @RequestMapping("/")
-    String home() {
-        return "Welcome to Weather App";
+    @GetMapping("/home")
+    public String home() {
+        return "home";
     }
 
+    @ResponseBody
     @RequestMapping("weather/{city}")
     public WeatherResponse getWeather(@PathVariable String city) {
         return this.weatherService.getCurrentWeather(city);
