@@ -1,26 +1,51 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
     <title>Weather Report</title>
 </head>
 <body>
-    <span>Welcome to Weather Report!</span>
-    <p>Please, inform the name of the city you want to see the report</p>
+<div class="container">
+    <h1 class="welcome-text">Welcome to Weather Report!</h1>
+    <p>Please, inform the name of the city you want to get the report</p>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <form class="d-flex" role="search" method="get" th:action="@{/weather}">
+                <input class="form-control me-2" type="search" placeholder="Search" name="city" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
     </nav>
+
+    <!-- Seção para exibir os dados do clima -->
+    <div th:if="${weather} != null" class="mt-4">
+        <h2>Weather in <span th:text="${weather.location.name}">City name</span></h2>
+        <div>
+            <div class="row">
+                <div class="col">
+                    <p><strong>Temperature: </strong><span th:text="${weather.current.tempC}">0</span>°C</p>
+                    <p><strong>Feeling: </strong><span th:text="${weather.current.feelsLikeC}">0</span>°C</p>
+                    <p><strong>Preciptation: </strong><span th:text="${weather.current.precipMm}">0</span>mm</p>
+                    <p><strong>Humidity: </strong><span th:text="${weather.current.humidity}">0</span>%</p>
+                    <p><strong>UV index: </strong><span th:text="${weather.current.uv}">0</span></p>
+                    <p><strong>Wind speed: </strong><span th:text="${weather.current.windKph}">0</span>Kmph</p>
+                    <p><strong>Wind direction: </strong><span th:text="${weather.current.windDir}">0</span></p>
+                </div>
+                <div class="col">
+                    <p><strong>Region: </strong><span th:text="${weather.location.region}">region</span></p>
+                    <p><strong>Country: </strong><span th:text="${weather.location.country}">country</span></p>
+                    <p><strong>Local time: </strong><span th:text="${weather.location.localTime}">0</span></p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
