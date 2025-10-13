@@ -17,17 +17,18 @@ O WeatherApp é uma aplicação web completa que permite aos usuários consultar
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
-- **Java 17** - Linguagem de programação
-- **Spring Boot 3.5.5** - Framework principal
-- **Spring MVC** - Arquitetura web
-- **REST Template** - Consumo de APIs
-- **Maven** - Gerenciamento de dependências
+- ![Java 17](https://img.shields.io/badge/Java-17-blue?logo=java) **Java 17**
+- ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.5-green?logo=springboot) **Spring Boot 3.5.5**
+- ![Spring MVC](https://img.shields.io/badge/Spring%20MVC-lightgreen?logo=spring) **Spring MVC** 
+- ![REST Template](https://img.shields.io/badge/REST%20Template-orange?logo=java) **REST Template** 
+- ![Maven](https://img.shields.io/badge/Maven-3.8.4-red?logo=apachemaven) **Maven** 
 
 ### Frontend
-- **Thymeleaf** - Template engine
-- **Bootstrap 5.3.8** - Framework CSS
-- **HTML5** - Estrutura semântica
-- **CSS3** - Estilos e animações
+- ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.0.12-blue?logo=thymeleaf) **Thymeleaf** 
+- ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.8-lightblue?logo=bootstrap) **Bootstrap 5.3.8** 
+- ![HTML5](https://img.shields.io/badge/HTML5-5.0-orange?logo=html5) **HTML5**
+- ![CSS3](https://img.shields.io/badge/CSS3-3.0-blue?logo=css3) **CSS3**
+
 
 ### API Externa
 - **WeatherAPI.com** - Provedor de dados meteorológicos
@@ -79,15 +80,14 @@ Este projeto foi desenvolvido com foco educacional, visando o aprendizado práti
 ## 🔮 Roadmap e Melhorias Futuras
 
 ### 🎨 Experiência do Usuário
-- [ ] Previsão estendida (7 dias)
-- [ ] Gráficos de temperatura histórica
+- [ ] Previsão estendida (N dias)
 - [ ] Ícones climáticos animados
 - [ ] Tema escuro/claro
 - [ ] Geolocalização automática
 - [ ] Busca com autocomplete
 
 ### 🔒 Segurança e Performance
-- [ ] Tratamento de erros mais robusto
+- [ ] Tratamento de erros
 - [ ] Logs estruturados e monitoramento
 - [ ] Testes unitários e de integração
 - [ ] Configuração de profiles (dev/prod)
@@ -107,11 +107,7 @@ Contribuições são bem-vindas! Como projeto de estudo, valorizamos especialmen
 - Issues relatando bugs
 - Ideias para novas funcionalidades
 - Documentação e exemplos
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
+- 
 ## 👨‍💻 Autor
 
 **Erixian**  
