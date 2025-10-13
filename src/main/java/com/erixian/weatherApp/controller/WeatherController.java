@@ -1,5 +1,6 @@
 package com.erixian.weatherApp.controller;
 
+import com.erixian.weatherApp.exception.CityNotFoundEx;
 import com.erixian.weatherApp.model.WeatherResponse;
 import com.erixian.weatherApp.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,18 @@ public class WeatherController {
     }
 
     @GetMapping("/weather")
-    public String getWeather(@RequestParam String city, Model model) {
-        WeatherResponse weatherResponse = this.weatherService.getCurrentWeather(city);
-        model.addAttribute("weather", weatherResponse);
+    public String getWeather(@RequestParam(required = false) String city, Model model) throws CityNotFoundEx {
+        if(city == null || city.trim().isEmpty()) {
+            model.addAttribute("error", "Please provide a city name");
+            return "home";
+        }
+        try {
+            WeatherResponse weatherResponse = this.weatherService.getCurrentWeather(city);
+            model.addAttribute("weather", weatherResponse);
+            return "home";
+        } catch(CityNotFoundEx ex) {
+            model.addAttribute("error", ex.getMessage());
+        }
 
         return "home";
     }

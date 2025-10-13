@@ -19,6 +19,10 @@
                 <input class="form-control me-2" type="search" placeholder="Search" name="city" aria-label="Search"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            <div th:if="${error}" class="alert alert-danger mt-3">
+                <strong>Erro:</strong>
+                <span th:text="${error}">Mensagem de erro</span>
+            </div>
         </div>
     </nav>
 
