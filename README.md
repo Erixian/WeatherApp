@@ -4,7 +4,7 @@ Um aplicativo web desenvolvido em Java com Spring Boot para consulta de condiç�
 
 ## 📋 Descrição
 
-O WeatherApp é uma aplicação web completa que permite aos usuários consultar condições climáticas atuais de qualquer cidade ao redor do mundo. Desenvolvido como projeto de estudo, o foco principal está na integração com APIs externas e no desenvolvimento full-stack com Spring Boot.
+O WeatherApp é uma aplicação web que permite aos usuários consultar condições climáticas atuais de qualquer cidade ao redor do mundo. Desenvolvido como projeto de estudo, o foco principal está na integração com APIs externas e no desenvolvimento full-stack com Spring Boot.
 
 ## ✨ Funcionalidades
 
