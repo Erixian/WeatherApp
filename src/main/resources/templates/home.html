@@ -32,13 +32,13 @@
         <div>
             <div class="row">
                 <div class="col">
-                    <p><strong>Temperature: </strong><span th:text="${weather.current.tempC}">0</span>°C</p>
-                    <p><strong>Feeling: </strong><span th:text="${weather.current.feelsLikeC}">0</span>°C</p>
-                    <p><strong>Preciptation: </strong><span th:text="${weather.current.precipMm}">0</span>mm</p>
-                    <p><strong>Humidity: </strong><span th:text="${weather.current.humidity}">0</span>%</p>
-                    <p><strong>UV index: </strong><span th:text="${weather.current.uv}">0</span></p>
-                    <p><strong>Wind speed: </strong><span th:text="${weather.current.windKph}">0</span>Kmph</p>
-                    <p><strong>Wind direction: </strong><span th:text="${weather.current.windDir}">0</span></p>
+                    <p><strong>Temperature: </strong><span th:text="${weather.weather.tempC}">0</span>°C</p>
+                    <p><strong>Feeling: </strong><span th:text="${weather.weather.feelsLikeC}">0</span>°C</p>
+                    <p><strong>Preciptation: </strong><span th:text="${weather.weather.precipMm}">0</span>mm</p>
+                    <p><strong>Humidity: </strong><span th:text="${weather.weather.humidity}">0</span>%</p>
+                    <p><strong>UV index: </strong><span th:text="${weather.weather.uv}">0</span></p>
+                    <p><strong>Wind speed: </strong><span th:text="${weather.weather.windKph}">0</span>Kmph</p>
+                    <p><strong>Wind direction: </strong><span th:text="${weather.weather.windDir}">0</span></p>
                 </div>
                 <div class="col">
                     <p><strong>Region: </strong><span th:text="${weather.location.region}">region</span></p>
