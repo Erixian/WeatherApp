@@ -1,10 +1,10 @@
 ---
 
-# ☁️ WeatherApp
+# WeatherApp
 
 A simple web application built with Spring Boot and Thymeleaf that fetches and displays current weather information for any city using an external weather API.
 
-## ✨ Features
+## Features
 
 *   **Current Weather Data:** Get temperature, "feels like" temperature, precipitation, humidity, UV index, wind speed, and wind direction.
 *   **Location Context:** Displays region, country, and local time for the searched city.
@@ -14,7 +14,7 @@ A simple web application built with Spring Boot and Thymeleaf that fetches and d
     *   Prevents application crashes, ensuring a smooth experience even with API errors.
     *   Validates input for empty city names.
 
-## 🚀 Technologies Used
+## Technologies Used
 
 *   **Backend:**
     *   **Java 17+ & Spring Boot 3:** The core framework for the server-side logic.
@@ -26,7 +26,7 @@ A simple web application built with Spring Boot and Thymeleaf that fetches and d
 *   **External API:**
     *   **WeatherAPI.com:** Provides the weather data. (You'll need a free API key from them.)
 
-## ⚙️ Setup and Running Locally
+## Setup and Running Locally
 
 1.  **Get the Code:**
     ```bash
