@@ -9,6 +9,9 @@ public class Weather {
     private String description;
     private String icon;
 
+    public Weather() {
+    }
+
     @JsonProperty("id")
     public int getId() {
         return this.id;

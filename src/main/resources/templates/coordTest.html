@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coordinates Test</title>
+</head>
+<body>
+<h2>Coordinates Test Page</h2>
+
+<!-- O formulário envia para a MESMA página -->
+<form method="get">
+    City: <input type="text" name="city" th:value="${city}" required><br>
+    State: <input type="text" name="stateCode" th:value="${stateCode}"><br>
+    Country: <input type="text" name="countryCode" th:value="${countryCode}"><br>
+    <button type="submit">Get Coordinates</button>
+</form>
+
+<div th:if="${error}" style="color: red;">
+    <span th:text="${error}"></span>
+</div>
+
+<div th:if="${coordinates}">
+    <h3>Results:</h3>
+    <div>Longitude: <span th:text="${coordinates.lon}"></span></div>
+    <div>Latitude: <span th:text="${coordinates.lat}"></span></div>
+    <div>City: <span th:text="${city}"></span></div>
+</div>
+</body>
+</html>

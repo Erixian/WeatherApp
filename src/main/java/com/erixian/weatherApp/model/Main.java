@@ -13,6 +13,9 @@ public class Main {
     private int seaLevel;
     private int grndLevel;
 
+    public Main() {
+    }
+
     @JsonProperty("temp")
     public double getTemp() {
         return this.temp;
