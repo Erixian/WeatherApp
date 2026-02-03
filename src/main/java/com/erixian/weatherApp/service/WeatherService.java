@@ -48,15 +48,11 @@ public class WeatherService {
         System.out.println(openWeatherResponse.getName());
 
         ArrayList<Weather> list = openWeatherResponse.getWeather();
-        for(Weather weather : list) {
+        System.out.println(openWeatherResponse.getRain());
+        for (Weather weather : list) {
             System.out.println(weather.toString());
         }
 
         return openWeatherResponse;
     }
-
-    /*public OpenWeatherResponse getCurrentWatherByName(String city, String stateCode, String countryCode) {
-        String wholeUrl;
-        OpenWeatherResponse openWeatherResponse;
-    }*/
 }

@@ -37,24 +37,20 @@
         <button type="submit">Consultar</button>
     </form>
 
-    <!-- Exibição dos Resultados (Só aparece se weatherData não for nulo) -->
     <div class="result-box" th:if="${weatherData != null}">
         <h3>Resultado para: <span th:text="${coords.name}">Cidade</span>, <span th:text="${weatherData.sys.country}">País</span></h3>
 
         <div class="data-grid">
-            <!-- Coordenadas -->
             <div class="section-title">Localização</div>
             <div>Latitude: <span th:text="${coords.lat}"></span></div>
             <div>Longitude: <span th:text="${coords.lon}"></span></div>
 
-            <!-- Clima (Weather List) -->
             <div class="section-title">Condições Atuais</div>
             <div th:each="w : ${weatherData.weather}" style="grid-column: span 2;">
                 <img th:src="@{'http://openweathermap.org/img/wn/' + ${w.icon} + '.png'}" alt="Weather Icon">
                 <span th:text="${w.main}">Main</span> - <span th:text="${w.description}">Description</span>
             </div>
 
-            <!-- Main Data -->
             <div class="section-title">Temperaturas e Umidade</div>
             <div>Temp. Atual: <span th:text="${weatherData.main.temp}"></span>°</div>
             <div>Sensação: <span th:text="${weatherData.main.feelsLike}"></span>°</div>
@@ -63,18 +59,15 @@
             <div>Umidade: <span th:text="${weatherData.main.humidity}"></span>%</div>
             <div>Pressão: <span th:text="${weatherData.main.pressure}"></span> hPa</div>
 
-            <!-- Rain & Clouds -->
             <div class="section-title">Precipitação e Nuvens</div>
             <div>Chuva (1h): <span th:text="${weatherData.rain != null ? weatherData.rain.lh : '0'}">0</span> mm</div>
             <div>Nuvens: <span th:text="${weatherData.clouds.all}"></span>%</div>
 
-            <!-- Sys & Misc -->
             <div class="section-title">Sistema e Horários (Unix)</div>
             <div>Nascer do Sol: <span th:text="${weatherData.sys.sunrise}"></span></div>
             <div>Pôr do Sol: <span th:text="${weatherData.sys.sunset}"></span></div>
             <div>Timezone: <span th:text="${weatherData.timezone}"></span></div>
             <div>ID Cidade: <span th:text="${weatherData.id}"></span></div>
-            <div>Status HTTP: <span th:text="${weatherData.cod}"></span></div>
         </div>
     </div>
 </div>

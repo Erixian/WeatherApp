@@ -35,7 +35,7 @@ public class ApiWeatherController {
         this.geoCodingService = geoCodingService;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String showHome() {
         return "home";
     }

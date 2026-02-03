@@ -3,7 +3,7 @@ package com.erixian.weatherApp.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Rain {
-    @JsonProperty("lh")
+    @JsonProperty("1h")
     private double lh;
 
     public Rain() {
