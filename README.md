@@ -30,8 +30,11 @@ Este projeto foi concebido com o propósito educacional de fornecer um exemplo c
 ### API Externa
 - **OpenWeatherMap API:** Fornece os dados meteorológicos. Documentação disponível em: https://openweathermap.org/api
 - **Nota:** O código atual está configurado para usar a WeatherAPI.com, mas pode ser adaptado para utilizar a OpenWeatherMap API conforme necessário para fins educacionais.
+  
+### Interface da aplicação:
 
 ## Configuração e Execução Local
+<img width="1339" height="991" alt="Screenshot from 2026-02-03 16-19-41" src="https://github.com/user-attachments/assets/935c2659-5164-48f2-861b-f7662d0a5d10" />
 
 1. **Obtenha o código:**
    ```bash
