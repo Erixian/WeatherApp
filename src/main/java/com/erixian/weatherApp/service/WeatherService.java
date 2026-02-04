@@ -32,7 +32,6 @@ public class WeatherService {
 
     private final RestTemplate restTemplate;
 
-    // Construtor para injeção do RestTemplate (bean em RestTemplateConfig)
     public WeatherService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
 
