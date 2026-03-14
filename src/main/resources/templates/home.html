@@ -2,75 +2,114 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Previsão do Tempo</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-        button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
-        .result-box { margin-top: 20px; border-top: 2px solid #eee; padding-top: 20px; }
-        .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .section-title { grid-column: span 2; background: #eee; padding: 5px; margin-top: 10px; font-weight: bold; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima Now | Previsão do Tempo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/dist/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
 
-<div class="container">
-    <h2>Buscar Clima</h2>
+<div class="main-wrapper">
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-map-marker-alt"></i> Clima Now</h1>
+            <p>Descubra o tempo em qualquer lugar do mundo</p>
+        </header>
 
-    <!-- Formulário de Entrada -->
-    <form th:action="@{/weather}" method="get">
-        <div class="form-group">
-            <label>Cidade:</label>
-            <input type="text" name="city" placeholder="Ex: Zocca" required>
-        </div>
-        <div class="form-group">
-            <label>Código do Estado (BR use UF):</label>
-            <input type="text" name="stateCode" th:value="${stateCode != null ? stateCode : ''}" placeholder="Ex: SP">
-        </div>
-        <div class="form-group">
-            <label>Código do País:</label>
-            <input type="text" name="countryCode" placeholder="Ex: IT">
-        </div>
-        <button type="submit">Consultar</button>
-    </form>
+        <section class="search-section">
+            <form id="weatherForm" th:action="@{/weather}" method="get" class="weather-form">
+                <div class="input-group">
+                    <input type="text" name="city" placeholder="Cidade (Ex: London)" required>
+                </div>
+                <div class="input-row">
+                    <input type="text" name="stateCode" th:value="${stateCode != null ? stateCode : ''}" placeholder="UF">
+                    <input type="text" name="countryCode" placeholder="País (Ex: GB)">
+                </div>
+                <input type="hidden" name="clientTzOffsetMinutes" id="clientTzOffsetMinutes" value="0" />
+                <button type="submit" class="btn-search">BUSCAR CLIMA</button>
+            </form>
 
-    <div class="result-box" th:if="${weatherData != null}">
-        <h3>Resultado para: <span th:text="${coords.name}">Cidade</span>, <span th:text="${weatherData.sys.country}">País</span></h3>
+            <div th:if="${errorMessage != null}" class="error-box">
+                <p th:text="${errorMessage}">Cidade não encontrada</p>
+            </div>
+        </section>
 
-        <div class="data-grid">
-            <div class="section-title">Localização</div>
-            <div>Latitude: <span th:text="${coords.lat}"></span></div>
-            <div>Longitude: <span th:text="${coords.lon}"></span></div>
-
-            <div class="section-title">Condições Atuais</div>
-            <div th:each="w : ${weatherData.weather}" style="grid-column: span 2;">
-                <img th:src="@{'http://openweathermap.org/img/wn/' + ${w.icon} + '.png'}" alt="Weather Icon">
-                <span th:text="${w.main}">Main</span> - <span th:text="${w.description}">Description</span>
+        <!-- Resultado -->
+        <div class="result-card" th:if="${weatherData != null}">
+            <div class="result-header">
+                <div class="location-data">
+                    <h2 th:text="${coords.name + ', ' + weatherData.sys.country}">London, GB</h2>
+                    <p class="date-today" id="current-date"></p>
+                </div>
+                <div class="main-temp">
+                    <span th:text="${#numbers.formatDecimal(weatherData.main.temp, 1, 0)}">11</span>°C
+                </div>
             </div>
 
-            <div class="section-title">Temperaturas e Umidade</div>
-            <div>Temp. Atual: <span th:text="${weatherData.main.temp}"></span>°</div>
-            <div>Sensação: <span th:text="${weatherData.main.feelsLike}"></span>°</div>
-            <div>Mínima: <span th:text="${weatherData.main.tempMin}"></span>°</div>
-            <div>Máxima: <span th:text="${weatherData.main.tempMax}"></span>°</div>
-            <div>Umidade: <span th:text="${weatherData.main.humidity}"></span>%</div>
-            <div>Pressão: <span th:text="${weatherData.main.pressure}"></span> hPa</div>
+            <div class="weather-condition">
+                <div th:each="w : ${weatherData.weather}" class="condition-item">
+                    <!-- Ícone com sombra via CSS -->
+                    <img th:src="@{'http://openweathermap.org/img/wn/' + ${w.icon} + '@4x.png'}" class="weather-icon" alt="Weather Icon">
+                    <p class="desc" th:text="${w.description}">Few Clouds</p>
+                </div>
+            </div>
 
-            <div class="section-title">Precipitação e Nuvens</div>
-            <div>Chuva (1h): <span th:text="${weatherData.rain != null ? weatherData.rain.lh : '0'}">0</span> mm</div>
-            <div>Nuvens: <span th:text="${weatherData.clouds.all}"></span>%</div>
-
-            <div class="section-title">Sistema e Horários (Unix)</div>
-            <div>Nascer do Sol: <span th:text="${weatherData.sys.sunrise}"></span></div>
-            <div>Pôr do Sol: <span th:text="${weatherData.sys.sunset}"></span></div>
-            <div>Timezone: <span th:text="${weatherData.timezone}"></span></div>
-            <div>ID Cidade: <span th:text="${weatherData.id}"></span></div>
+            <div class="info-grid">
+                <div class="info-box">
+                    <span>SENSAÇÃO</span>
+                    <strong th:text="${weatherData.main.feelsLike + '°'}">9.52°</strong>
+                </div>
+                <div class="info-box">
+                    <span>UMIDADE</span>
+                    <strong th:text="${weatherData.main.humidity + '%'}">48%</strong>
+                </div>
+                <div class="info-box">
+                    <span>MÍNIMA</span>
+                    <strong th:text="${weatherData.main.tempMin + '°'}">10.36°</strong>
+                </div>
+                <div class="info-box">
+                    <span>MÁXIMA</span>
+                    <strong th:text="${weatherData.main.tempMax + '°'}">12.1°</strong>
+                </div>
+                <div class="info-box">
+                    <span>NUVENS</span>
+                    <strong th:text="${weatherData.clouds.all + '%'}">20%</strong>
+                </div>
+                <div class="info-box">
+                    <span>NASCER DO SOL (GMT)</span>
+                    <strong th:text="${sunriseGmt}">06:30 GMT</strong>
+                </div>
+                <div class="info-box">
+                    <span>PÔR DO SOL (GMT)</span>
+                    <strong th:text="${sunsetGmt}">18:20 GMT</strong>
+                </div>
+                <div class="info-box">
+                    <span>LOCAL (Fuso)</span>
+                    <strong th:text="${locationZone}">GMT+01:00</strong>
+                </div>
+                <div class="info-box">
+                    <span>CLIENTE (Fuso)</span>
+                    <strong th:text="${clientZone}">GMT-03:00</strong>
+                </div>
+                <div class="info-box">
+                    <span>Diferença</span>
+                    <strong th:text="${offsetDiff}">+4h</strong>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<script>
+    document.getElementById('current-date').innerText = new Date().toLocaleDateString('pt-BR', { 
+        weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' 
+    });
+
+    const tzElement = document.getElementById('clientTzOffsetMinutes');
+    if (tzElement) {
+        tzElement.value = new Date().getTimezoneOffset();
+    }
+</script>
 </body>
 </html>

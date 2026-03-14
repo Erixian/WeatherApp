@@ -1,11 +1,10 @@
 package com.erixian.weatherApp.service;
 
+import com.erixian.weatherApp.exception.CityNotFoundEx;
 import com.erixian.weatherApp.model.Coordinates;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.ResourceBundle;
 
 @Service
 public class GeoCodingService {
@@ -37,10 +36,9 @@ public class GeoCodingService {
         System.out.println(wholeUrl);
 
         coordResponse = restTemplate.getForObject(wholeUrl, Coordinates[].class);
-        if(coordResponse.length == 0) {
-            throw new RuntimeException("No coords found for: " + city);
-        }
-        else {
+        if (coordResponse == null || coordResponse.length == 0) {
+            throw new CityNotFoundEx("Cidade não encontrada: " + city);
+        } else {
             System.out.println(coordResponse.toString());
         }
 

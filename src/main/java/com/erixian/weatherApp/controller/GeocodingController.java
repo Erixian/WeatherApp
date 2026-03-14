@@ -3,8 +3,6 @@ package com.erixian.weatherApp.controller;
 import com.erixian.weatherApp.model.Coordinates;
 import com.erixian.weatherApp.service.GeoCodingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
