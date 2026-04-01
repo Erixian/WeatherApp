@@ -34,7 +34,9 @@ Este projeto foi concebido com o propósito educacional de fornecer um exemplo c
 ### Interface da aplicação:
 
 ## Configuração e Execução Local
-<img width="1339" height="991" alt="Screenshot from 2026-02-03 16-19-41" src="https://github.com/user-attachments/assets/935c2659-5164-48f2-861b-f7662d0a5d10" />
+<img width="516" height="932" alt="image" src="https://github.com/user-attachments/assets/b4e40099-5ff6-4e59-9756-82c33bd4c964" />
+
+" />
 
 1. **Obtenha o código:**
    ```bash
@@ -109,11 +111,3 @@ Este projeto é aberto para contribuições da comunidade educacional. Sinta-se 
 1. Reportar problemas (issues)
 2. Sugerir novas funcionalidades
 3. Enviar pull requests com melhorias
-
-## Licença
-
-Este projeto é destinado para fins educacionais.
-
----
-
-*Projeto educacional desenvolvido para demonstrar conceitos de desenvolvimento web full-stack com Spring Boot e consumo de APIs externas.*
